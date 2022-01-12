@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 11:09:03 by moulmado          #+#    #+#             */
-/*   Updated: 2022/01/11 16:12:06 by moulmado         ###   ########.fr       */
+/*   Created: 2022/01/06 11:52:45 by moulmado          #+#    #+#             */
+/*   Updated: 2022/01/06 11:53:03 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void	display_map(char **map)
 {
-	char	**map;
-	char	*path;
+	int	i;
+	int	j;
 
-	if (ac != 2)
-		invalid_args();
-	path = av[1];
-	map = getmap(path);
-	check_map(map);
-	open_window();
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+			write(1, &map[i][j++], 1);
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
+void	invalid_args(void)
+{
+	printf("-----------SO_LONG-----------\n");
+	printf("HOW TO : ./so_long + map_file\n");
+	exit(1);
 }

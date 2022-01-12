@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_check_map_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 11:09:03 by moulmado          #+#    #+#             */
-/*   Updated: 2022/01/11 16:12:06 by moulmado         ###   ########.fr       */
+/*   Created: 2022/01/06 19:12:53 by moulmado          #+#    #+#             */
+/*   Updated: 2022/01/08 17:10:02 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void	check_intruder(char **map)
 {
-	char	**map;
-	char	*path;
+	int	i;
+	int	j;
+	int	intruder;
 
-	if (ac != 2)
-		invalid_args();
-	path = av[1];
-	map = getmap(path);
-	check_map(map);
-	open_window();
+	i = 0;
+	intruder = 0;
+	while (!intruder && map[i])
+	{
+		j = 0;
+		while (!intruder && map[i][j])
+		{
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'C'
+				&& map[i][j] != 'E' && map[i][j] != 'P')
+				intruder = 1;
+			j++;
+		}
+		i++;
+	}
+	if (intruder)
+	{
+		printf("Error\n");
+		printf("Invalid map\n");
+		exit(1);
+	}
 }
