@@ -6,7 +6,7 @@
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:09:03 by moulmado          #+#    #+#             */
-/*   Updated: 2022/01/11 16:12:06 by moulmado         ###   ########.fr       */
+/*   Updated: 2022/01/16 16:13:50 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	main(int ac, char **av)
 	path = av[1];
 	map = getmap(path);
 	check_map(map);
-	open_window();
+	open_window(map);
 }
