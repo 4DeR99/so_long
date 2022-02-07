@@ -6,7 +6,7 @@
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 13:13:42 by moulmado          #+#    #+#             */
-/*   Updated: 2022/02/01 15:50:30 by moulmado         ###   ########.fr       */
+/*   Updated: 2022/02/06 13:22:44 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void	get_info(t_vars *mlx, char **map)
 	win_res(mlx, map);
 	walls_position(mlx, map);
 	collectibles_position(mlx, map);
+	exits_position(mlx, map);
 }

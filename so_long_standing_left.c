@@ -6,7 +6,7 @@
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 12:14:31 by moulmado          #+#    #+#             */
-/*   Updated: 2022/01/19 21:01:52 by moulmado         ###   ########.fr       */
+/*   Updated: 2022/02/06 16:37:15 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	standing_left(t_vars *mlx)
 		i++;
 		j = 0;
 	}
+	collectibles(mlx);
 	util(mlx, &img, &i);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img.img,
 		mlx->player_x, mlx->player_y);

@@ -6,7 +6,7 @@
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 15:51:10 by moulmado          #+#    #+#             */
-/*   Updated: 2022/01/19 21:01:48 by moulmado         ###   ########.fr       */
+/*   Updated: 2022/02/06 13:02:34 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	running_up(t_vars *mlx)
 
 	if (check_next_position_v(mlx, mlx->player_y - 2, 'U'))
 		mlx->player_y -= 2;
+	check_next_position_4c_v(mlx, mlx->player_y - 2, 'U');
 	if (i == 4)
 	{
 		i = 0;
@@ -52,6 +53,7 @@ int	running_up(t_vars *mlx)
 		j = 0;
 	}
 	util(mlx, &img, &i);
+	collectibles(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, img.img,
 		mlx->player_x, mlx->player_y);
 	j++;

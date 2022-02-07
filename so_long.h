@@ -6,7 +6,7 @@
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:09:37 by moulmado          #+#    #+#             */
-/*   Updated: 2022/02/01 15:50:30 by moulmado         ###   ########.fr       */
+/*   Updated: 2022/02/06 13:10:27 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_vars
 	int		win_width;
 	int		**w_position;
 	int		**c_position;
+	int		**e_position;
+	int		c_count;
 }				t_vars;
 
 typedef struct s_img
@@ -72,5 +74,8 @@ int		running_up(t_vars *mlx);
 int		running_down(t_vars *mlx);
 int		check_next_position_h(t_vars *mlx, int next_position, char movement);
 int		check_next_position_v(t_vars *mlx, int next_position, char movement);
+void	check_next_position_4c_v(t_vars *mlx, int next_position, char movement);
+void	check_next_position_4c_h(t_vars *mlx, int next_position, char movement);
+void	exits_position(t_vars *mlx, char **map);
 
 #endif

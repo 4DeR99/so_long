@@ -6,14 +6,28 @@
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:51:16 by moulmado          #+#    #+#             */
-/*   Updated: 2022/01/19 20:44:54 by moulmado         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:44:45 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void	remove_collectible(t_vars *mlx, int c)
+{
+	t_img	img;
+
+	img.img = mlx_xpm_file_to_image(mlx->mlx,
+			"xpm files/background.xpm",
+			&img.img_width, &img.img_height);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, img.img,
+		mlx->c_position[c][0], mlx->c_position[c][1]);
+}
+
 static void	util(t_vars *mlx, t_img *img, int *i)
 {
+	int	c;
+
+	c = 0;
 	if (*i == 0)
 		img->img = mlx_xpm_file_to_image(mlx->mlx,
 				"xpm files/meat/meat0.xpm",
@@ -26,16 +40,23 @@ static void	util(t_vars *mlx, t_img *img, int *i)
 		img->img = mlx_xpm_file_to_image(mlx->mlx,
 				"xpm files/meat/meat2.xpm",
 				&img->img_width, &img->img_height);
+	while (mlx->c_position[c])
+	{
+		if (mlx->c_position[c][2] != 'X')
+			mlx_put_image_to_window(mlx->mlx, mlx->win, img->img,
+				mlx->c_position[c][0], mlx->c_position[c][1]);
+		else
+			remove_collectible(mlx, c);
+		c++;
+	}
 }
 
 int	collectibles(t_vars *mlx)
 {
 	static int	i;
 	static int	j;
-	int			c;
 	t_img		img;
 
-	c = 0;
 	if (i == 2)
 	{
 		i = 0;
@@ -47,12 +68,6 @@ int	collectibles(t_vars *mlx)
 		j = 0;
 	}
 	util(mlx, &img, &i);
-	while (mlx->c_position[c])
-	{
-		mlx_put_image_to_window(mlx->mlx, mlx->win, img.img,
-			mlx->c_position[c][0], mlx->c_position[c][1]);
-			c++;
-	}
 	j++;
 	return (0);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_collectibles_position.c                    :+:      :+:    :+:   */
+/*   so_long_exit_position.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moulmado <moulmado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 19:05:31 by moulmado          #+#    #+#             */
-/*   Updated: 2022/02/05 19:31:35 by moulmado         ###   ########.fr       */
+/*   Created: 2022/02/06 13:07:55 by moulmado          #+#    #+#             */
+/*   Updated: 2022/02/06 13:09:59 by moulmado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	count_collectibles(char **map)
+static int	count_exits(char **map)
 {
 	int	i;
 	int	j;
@@ -39,25 +39,18 @@ static void	ft_allocate(t_vars *mlx, char **map)
 	int	i;
 	int	tabs;
 
-	tabs = count_collectibles(map);
-	mlx->c_position = (int **)malloc((tabs + 1) * sizeof(int *));
-	mlx->c_position[tabs] = NULL;
+	tabs = count_exits(map);
+	mlx->e_position = (int **)malloc((tabs + 1) * sizeof(int *));
+	mlx->e_position[tabs] = NULL;
 	i = 0;
 	while (i < tabs)
 	{
-		mlx->c_position[i] = (int *)malloc(3 * sizeof(int));
+		mlx->e_position[i] = (int *)malloc(2 * sizeof(int));
 		i++;
 	}
 }
 
-static void	count_c(t_vars *mlx)
-{
-	mlx->c_count = 0;
-	while (mlx->c_position[mlx->c_count])
-		mlx->c_count++;
-}
-
-void	collectibles_position(t_vars *mlx, char **map)
+void	exits_position(t_vars *mlx, char **map)
 {
 	int			i;
 	int			j;
@@ -73,14 +66,12 @@ void	collectibles_position(t_vars *mlx, char **map)
 		{
 			if (map[i][j] == 'C')
 			{
-				mlx->c_position[c_i][0] = j * SIZE_OF_BOCK;
-				mlx->c_position[c_i][1] = i * SIZE_OF_BOCK;
-				mlx->c_position[c_i][2] = 'O';
+				mlx->e_position[c_i][0] = j * SIZE_OF_BOCK;
+				mlx->e_position[c_i][1] = i * SIZE_OF_BOCK;
 				c_i++;
 			}
 			j++;
 		}
 		i++;
 	}
-	count_c(mlx);
 }
